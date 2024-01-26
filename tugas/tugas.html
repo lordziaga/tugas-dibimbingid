@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penilaian Siswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h2>Input Nilai Siswa</h2>
+    <label for="nilai">Masukkan Nilai:</label>
+    <input type="number" id="nilai" placeholder="Masukkan nilai..." required>
+    <button onclick="hitungNilai()">Hitung Nilai</button>
+    <div id="result"></div>
+
+    <script>
+        function hitungNilai() {
+            var nilaiInput = document.getElementById("nilai").value;
+            var resultDiv = document.getElementById("result");
+            var nilai = parseFloat(nilaiInput);
+
+            if (isNaN(nilai) || nilai < 0 || nilai > 100) {
+                resultDiv.innerHTML = "Masukkan nilai antara 0 dan 100.";
+            } else {
+                var grade = "";
+                if (nilai >= 85) {
+                    grade = "A";
+                } else if (nilai >= 75) {
+                    grade = "B";
+                } else if (nilai >= 60) {
+                    grade = "C";
+                } else {
+                    grade = "D";
+                }
+
+                resultDiv.innerHTML = "Nilai: " + nilai + " - Grade " + grade + " - " + (nilai % 2 === 0 ? "Genap" : "Ganjil");
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>
